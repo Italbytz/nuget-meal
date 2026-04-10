@@ -1,4 +1,8 @@
 - name: Home
   href: index.md
+- name: Guides
+  items:
+    - name: Integration clients
+      href: docs/integration-clients.md
 - name: API
   href: api/

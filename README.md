@@ -51,6 +51,8 @@ API documentation is generated with `docfx` and can be published via GitHub Page
 
 - `https://italbytz.github.io/nuget-meal/`
 
+The doc site now also includes an integration guide that explains how OpenMensa, STWPB, and the testing helpers fit together in the consolidated package family.
+
 ## Quality checks
 
 This repository includes:

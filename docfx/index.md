@@ -11,6 +11,10 @@
 
 This first wave focuses on the core meal contracts, OpenMensa integration, and reusable testing helpers.
 
+## Guide
+
+Use `Guides > Integration clients` for a quick overview of how the former OpenMensa, STWPB, and testing repositories map onto the consolidated package family.
+
 ## Local validation
 
 ```bash
