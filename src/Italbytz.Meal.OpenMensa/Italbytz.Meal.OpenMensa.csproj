@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Italbytz.Meal.Abstractions\Italbytz.Meal.Abstractions.csproj" />
+    <ProjectReference Include="..\Italbytz.Meal.OpenMensa.Client\Italbytz.Meal.OpenMensa.Client.csproj" />
+    <ProjectReference Include="..\..\..\nuget-foundation\src\Italbytz.Common.Abstractions\Italbytz.Common.Abstractions.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <PackageId>Italbytz.Meal.OpenMensa</PackageId>
+    <Description>OpenMensa-backed meal services and mapping helpers.</Description>
+  </PropertyGroup>
+
+</Project>

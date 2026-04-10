@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Italbytz.Meal.Abstractions\Italbytz.Meal.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Italbytz.Meal.OpenMensa\Italbytz.Meal.OpenMensa.csproj" />
+    <ProjectReference Include="..\..\src\Italbytz.Meal.OpenMensa.Client\Italbytz.Meal.OpenMensa.Client.csproj" />
+    <ProjectReference Include="..\..\src\Italbytz.Meal.Testing\Italbytz.Meal.Testing.csproj" />
+  </ItemGroup>
+
+</Project>
