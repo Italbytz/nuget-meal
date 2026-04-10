@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\nuget-foundation\src\Italbytz.Common.Abstractions\Italbytz.Common.Abstractions.csproj" />
+    <PackageReference Include="Italbytz.Common.Abstractions" />
   </ItemGroup>
 
   <PropertyGroup>

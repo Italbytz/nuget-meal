@@ -5,5 +5,6 @@
 
   <ItemGroup>
     <PackageVersion Include="MSTest" Version="4.0.1" />
+    <PackageVersion Include="Italbytz.Common.Abstractions" Version="1.0.1" />
   </ItemGroup>
 </Project>
