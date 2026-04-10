@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <PackageId>Italbytz.Meal.STWPB.Client</PackageId>
+    <Description>Studentenwerk Paderborn STWPB API client and transport models for meal retrieval.</Description>
+  </PropertyGroup>
+
+</Project>

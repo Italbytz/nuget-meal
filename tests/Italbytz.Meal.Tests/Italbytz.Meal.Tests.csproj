@@ -19,6 +19,8 @@
     <ProjectReference Include="..\..\src\Italbytz.Meal.Abstractions\Italbytz.Meal.Abstractions.csproj" />
     <ProjectReference Include="..\..\src\Italbytz.Meal.OpenMensa\Italbytz.Meal.OpenMensa.csproj" />
     <ProjectReference Include="..\..\src\Italbytz.Meal.OpenMensa.Client\Italbytz.Meal.OpenMensa.Client.csproj" />
+    <ProjectReference Include="..\..\src\Italbytz.Meal.STWPB\Italbytz.Meal.STWPB.csproj" />
+    <ProjectReference Include="..\..\src\Italbytz.Meal.STWPB.Client\Italbytz.Meal.STWPB.Client.csproj" />
     <ProjectReference Include="..\..\src\Italbytz.Meal.Testing\Italbytz.Meal.Testing.csproj" />
   </ItemGroup>
 
