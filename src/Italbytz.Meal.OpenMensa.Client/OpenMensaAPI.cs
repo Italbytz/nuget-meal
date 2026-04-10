@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace Italbytz.Meal.OpenMensa.Client
@@ -59,10 +58,9 @@ namespace Italbytz.Meal.OpenMensa.Client
         }
     }
 
-    [Serializable]
-    public class NoMealsForDateException : Exception
+    public sealed class NoMealsForDateException : Exception
     {
-        public NoMealsForDateException()
+        public NoMealsForDateException() : base("No meals were found for the requested date.")
         {
         }
 
@@ -73,16 +71,11 @@ namespace Italbytz.Meal.OpenMensa.Client
         public NoMealsForDateException(string message, Exception innerException) : base(message, innerException)
         {
         }
-
-        protected NoMealsForDateException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 
-    [Serializable]
-    public class MensaClosedException : Exception
+    public sealed class MensaClosedException : Exception
     {
-        public MensaClosedException()
+        public MensaClosedException() : base("The requested mensa is closed for the selected date.")
         {
         }
 
@@ -91,10 +84,6 @@ namespace Italbytz.Meal.OpenMensa.Client
         }
 
         public MensaClosedException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
-
-        protected MensaClosedException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

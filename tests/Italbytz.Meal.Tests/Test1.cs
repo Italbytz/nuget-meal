@@ -21,7 +21,7 @@ public sealed class MealIntegrationTests
         var meals = await dataSource.RetrieveAll();
 
         Assert.IsNotNull(meals);
-        Assert.AreEqual(3, meals.Count);
+        Assert.HasCount(3, meals);
     }
 
     [TestMethod]
@@ -31,7 +31,7 @@ public sealed class MealIntegrationTests
 
         var collections = await service.Execute(new MealQuery { Mensa = 42, Date = new DateTime(2026, 4, 10) });
 
-        Assert.AreEqual(2, collections.Count);
+        Assert.HasCount(2, collections);
         CollectionAssert.AreEquivalent(new[] { Category.Dish, Category.Dessert }, collections.Select(c => c.Category).ToArray());
     }
 
@@ -69,7 +69,7 @@ public sealed class MealIntegrationTests
 
         var meals = Italbytz.Meal.STWPB.Client.Deserialize.ToMeals(json);
 
-        Assert.AreEqual(1, meals.Length);
+        Assert.HasCount(1, meals);
         Assert.AreEqual(ClientStwpbCategory.Sidedish, meals[0].Category);
     }
 
@@ -96,7 +96,7 @@ public sealed class MealIntegrationTests
         var meals = await dataSource.RetrieveAll();
 
         Assert.IsNotNull(meals);
-        Assert.AreEqual(1, meals.Count);
+        Assert.HasCount(1, meals);
         Assert.AreEqual("Pommes", meals[0].Name);
         Assert.AreEqual(Category.Sidedish, meals[0].Category);
         Assert.AreEqual(Additives.FoodColoring, meals[0].Additives);
