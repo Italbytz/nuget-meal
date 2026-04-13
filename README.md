@@ -4,19 +4,6 @@
 
 It is intended for developers who need reusable meal contracts, OpenMensa integration, and sample/testing helpers for apps, demos, and teaching material.
 
-## Current migration status
-
-The current Phase 4 waves now include:
-
-- `Italbytz.Meal.Abstractions`
-- `Italbytz.Meal.OpenMensa`
-- `Italbytz.Meal.OpenMensa.Client`
-- `Italbytz.Meal.STWPB`
-- `Italbytz.Meal.STWPB.Client`
-- `Italbytz.Meal.Testing`
-
-This means both the OpenMensa and STWPB integration paths are now available in the consolidated `nuget-meal` repo.
-
 ## Which package should I use?
 
 - Use `Italbytz.Meal.Abstractions` for contracts such as `IMeal`, `IMealCollection`, `IMealQuery`, `IPrice`, and `IGetMealsService`.
@@ -25,25 +12,6 @@ This means both the OpenMensa and STWPB integration paths are now available in t
 - Use `Italbytz.Meal.STWPB.Client` when you need the raw Studentenwerk Paderborn (STWPB) transport models and API access.
 - Use `Italbytz.Meal.STWPB` for the ready-to-use STWPB meal data source and mapping helpers.
 - Use `Italbytz.Meal.Testing` for mock meals, mock collections, and test-friendly example services.
-
-## Migration notice
-
-Older repositories and articles may still refer to names such as:
-
-- `Italbytz.Ports.Meal`
-- `Italbytz.Adapters.Meal.OpenMensa`
-- `Italbytz.Infrastructure.OpenMensa`
-- `Italbytz.Adapters.Meal.STWPB`
-- `Italbytz.Infrastructure.STWPB`
-- `Italbytz.Adapters.Meal.Mock`
-- `nuget-ports-meal`
-- `nuget-adapters-meal-openmensa`
-- `nuget-infrastructure-openmensa`
-- `nuget-adapters-meal-stwpb`
-- `nuget-infrastructure-stwpb`
-- `nuget-adapters-meal-mock`
-
-For all new development, please use the new `Italbytz.Meal.*` package names.
 
 ## Documentation
 
