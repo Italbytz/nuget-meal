@@ -1,5 +1,7 @@
 # nuget-meal
 
+[![Documentation](https://img.shields.io/badge/Documentation-GitHub%20Pages-blue?style=for-the-badge)](https://italbytz.github.io/nuget-meal/)
+
 `nuget-meal` bundles the refactored `Italbytz.Meal.*` package family for mensa and meal-plan scenarios.
 
 It is intended for developers who need reusable meal contracts, OpenMensa integration, and sample/testing helpers for apps, demos, and teaching material.
