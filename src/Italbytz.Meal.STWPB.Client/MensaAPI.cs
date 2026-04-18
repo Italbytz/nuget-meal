@@ -97,11 +97,24 @@ namespace Italbytz.Meal.STWPB.Client
                 PriceWorkers = ParsePrice(meal.PriceStaff),
                 PriceGuests = ParsePrice(meal.PriceGuests),
                 Allergens = ParseAllergens(meal.AllergensRaw),
-                Badges = ParseBadgesFromCategory(meal.Category),
+                Badges = ParseBadgesFromButton(meal.Button),
                 Restaurant = Restaurant.MensaHamm,
                 Pricetype = Pricetype.Fixed,
                 Image = meal.ImageJpeg ?? meal.ImageWebp,
                 Thumbnail = meal.ImageJpegThumb ?? meal.ImageWebpThumb,
+            };
+        }
+
+        private static Badge[] ParseBadgesFromButton(string? button)
+        {
+            if (string.IsNullOrEmpty(button))
+                return [];
+            var filename = button.Split('/').Last();
+            return filename switch
+            {
+                "4.png" => [Badge.Vegan],
+                "3.png" => [Badge.Vegetarian],
+                _ => []
             };
         }
 
@@ -219,6 +232,9 @@ namespace Italbytz.Meal.STWPB.Client
 
             [JsonPropertyName("image_webp_thumb")]
             public string? ImageWebpThumb { get; set; }
+
+            [JsonPropertyName("button")]
+            public string? Button { get; set; }
         }
     }
 }
