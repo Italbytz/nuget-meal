@@ -3,6 +3,7 @@ namespace Italbytz.Meal.Abstractions
 {
     public interface IMeal
     {
+        DateTime Date { get; set; }
         string Name { get; set; }
         string Image { get; set; }
         IPrice Price { get; set; }

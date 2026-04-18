@@ -1,7 +1,10 @@
+using System;
 namespace Italbytz.Meal.Abstractions
 {
     public class Meal : IMeal
     {
+        public DateTime Date { get; set; } = DateTime.MinValue;
+
         public string Name { get; set; } = string.Empty;
 
         public string Image { get; set; } = string.Empty;

@@ -62,6 +62,7 @@ namespace Italbytz.Meal.STWPB
 
             return new Italbytz.Meal.Abstractions.Meal
             {
+                Date = self.Date.DateTime,
                 Name = name,
                 Image = self.Image ?? string.Empty,
                 Category = category,
