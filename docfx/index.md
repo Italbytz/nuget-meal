@@ -2,14 +2,16 @@
 
 `nuget-meal` is the target repository for the refactored `Italbytz.Meal.*` package family.
 
-## Current Phase 4 slice
+## Current stable package family
 
 - `Italbytz.Meal.Abstractions`
 - `Italbytz.Meal.OpenMensa`
 - `Italbytz.Meal.OpenMensa.Client`
+- `Italbytz.Meal.STWPB`
+- `Italbytz.Meal.STWPB.Client`
 - `Italbytz.Meal.Testing`
 
-This first wave focuses on the core meal contracts, OpenMensa integration, and reusable testing helpers.
+The repository now covers the core meal contracts, both OpenMensa and STWPB integrations, and reusable testing helpers in a stable `1.0.0` package line.
 
 ## Guide
 
