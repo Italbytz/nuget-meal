@@ -60,6 +60,17 @@ namespace Italbytz.Meal.STWPB
                 }
             }
 
+            var badges = self.Badges.Select(b => b switch
+            {
+                Italbytz.Meal.STWPB.Client.Badge.Nonfat => Italbytz.Meal.Abstractions.Badge.Nonfat,
+                Italbytz.Meal.STWPB.Client.Badge.Vegan => Italbytz.Meal.Abstractions.Badge.Vegan,
+                Italbytz.Meal.STWPB.Client.Badge.Vegetarian => Italbytz.Meal.Abstractions.Badge.Vegetarian,
+                Italbytz.Meal.STWPB.Client.Badge.LowCalorie => Italbytz.Meal.Abstractions.Badge.LowCalorie,
+                Italbytz.Meal.STWPB.Client.Badge.LactoseFree => Italbytz.Meal.Abstractions.Badge.LactoseFree,
+                Italbytz.Meal.STWPB.Client.Badge.GlutenFree => Italbytz.Meal.Abstractions.Badge.GlutenFree,
+                _ => (Italbytz.Meal.Abstractions.Badge?)null
+            }).Where(b => b.HasValue).Select(b => b!.Value).ToArray();
+
             return new Italbytz.Meal.Abstractions.Meal
             {
                 Date = self.Date.DateTime,
@@ -68,6 +79,7 @@ namespace Italbytz.Meal.STWPB
                 Category = category,
                 Additives = additives,
                 Allergens = allergens,
+                Badges = badges,
                 Price = new Italbytz.Meal.Abstractions.Price
                 {
                     Others = self.PriceGuests,

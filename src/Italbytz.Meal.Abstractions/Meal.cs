@@ -16,5 +16,7 @@ namespace Italbytz.Meal.Abstractions
         public Additives Additives { get; set; } = Additives.None;
 
         public Category Category { get; set; } = Category.None;
+
+        public Badge[] Badges { get; set; } = Array.Empty<Badge>();
     }
 }

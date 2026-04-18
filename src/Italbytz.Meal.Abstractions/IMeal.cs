@@ -10,5 +10,6 @@ namespace Italbytz.Meal.Abstractions
         Allergens Allergens { get; set; }
         Additives Additives { get; set; }
         Category Category { get; set; }
+        Badge[] Badges { get; set; }
     }
 }
