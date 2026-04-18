@@ -97,11 +97,23 @@ namespace Italbytz.Meal.STWPB.Client
                 PriceWorkers = ParsePrice(meal.PriceStaff),
                 PriceGuests = ParsePrice(meal.PriceGuests),
                 Allergens = ParseAllergens(meal.AllergensRaw),
+                Badges = ParseBadgesFromCategory(meal.Category),
                 Restaurant = Restaurant.MensaHamm,
                 Pricetype = Pricetype.Fixed,
                 Image = meal.ImageJpeg ?? meal.ImageWebp,
                 Thumbnail = meal.ImageJpegThumb ?? meal.ImageWebpThumb,
             };
+        }
+
+        private static Badge[] ParseBadgesFromCategory(string category)
+        {
+            var normalized = category.ToLowerInvariant();
+            var badges = new List<Badge>();
+            if (normalized.Contains("vegan"))
+                badges.Add(Badge.Vegan);
+            else if (normalized.Contains("vegetarisch"))
+                badges.Add(Badge.Vegetarian);
+            return badges.ToArray();
         }
 
         private static Category ParseCategory(string category)
