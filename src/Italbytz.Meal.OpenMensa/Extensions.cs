@@ -15,11 +15,11 @@ namespace Italbytz.Meal.OpenMensa
                 default:
                     break;
             }
-            return new Meal()
+            return new Italbytz.Meal.Abstractions.Meal()
             {
                 Name = meal.Name,
                 Image = "",
-                Price = new Price() { Employees = meal.Prices.Employees, Others = meal.Prices.Others, Pupils = meal.Prices.Pupils, Students = meal.Prices.Students },
+                Price = new Italbytz.Meal.Abstractions.Price() { Employees = meal.Prices.Employees, Others = meal.Prices.Others, Pupils = meal.Prices.Pupils, Students = meal.Prices.Students },
                 Allergens = Allergens.None,
                 Additives = Additives.None,
                 Category = category

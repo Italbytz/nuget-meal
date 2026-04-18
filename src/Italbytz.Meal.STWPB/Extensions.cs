@@ -60,14 +60,14 @@ namespace Italbytz.Meal.STWPB
                 }
             }
 
-            return new Meal
+            return new Italbytz.Meal.Abstractions.Meal
             {
                 Name = name,
                 Image = self.Image ?? string.Empty,
                 Category = category,
                 Additives = additives,
                 Allergens = allergens,
-                Price = new Price
+                Price = new Italbytz.Meal.Abstractions.Price
                 {
                     Others = self.PriceGuests,
                     Employees = self.PriceWorkers,

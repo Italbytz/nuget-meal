@@ -1,18 +1,13 @@
-﻿using System;
-using Italbytz.Meal.Abstractions;
-
-namespace Italbytz.Meal.OpenMensa
+namespace Italbytz.Meal.Abstractions
 {
-    internal class Price : IPrice
+    public class Price : IPrice
     {
-        public Price()
-        {
-        }
-
         public double? Students { get; set; }
+
         public double? Employees { get; set; }
+
         public double? Pupils { get; set; }
+
         public double? Others { get; set; }
     }
 }
-

@@ -8,7 +8,7 @@ It is intended for developers who need reusable meal contracts, OpenMensa integr
 
 ## Which package should I use?
 
-- Use `Italbytz.Meal.Abstractions` for contracts such as `IMeal`, `IMealCollection`, `IMealQuery`, `IPrice`, and `IGetMealsService`.
+- Use `Italbytz.Meal.Abstractions` for contracts such as `IMeal`, `IMealCollection`, `IMealQuery`, `IPrice`, and `IGetMealsService`, plus the shared default `Meal` and `Price` implementations.
 - Use `Italbytz.Meal.OpenMensa.Client` when you need the raw OpenMensa API client and transport models.
 - Use `Italbytz.Meal.OpenMensa` for the ready-to-use OpenMensa meal service, data source, and mapping helpers.
 - Use `Italbytz.Meal.STWPB.Client` when you need the raw Studentenwerk Paderborn (STWPB) transport models and API access.
