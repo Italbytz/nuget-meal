@@ -1,0 +1,46 @@
+.shell {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 3rem;
+}
+
+.masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.eyebrow {
+    margin: 0 0 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.72rem;
+    color: var(--accent-strong);
+}
+
+.brand {
+    margin: 0;
+    font: 600 1.15rem/1.2 "Avenir Next", "Segoe UI", sans-serif;
+    color: var(--ink-strong);
+}
+
+.docs-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.8rem 1rem;
+    border-radius: 999px;
+    background: rgba(29, 80, 55, 0.08);
+    color: var(--accent-strong);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+@media (max-width: 720px) {
+    .masthead {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

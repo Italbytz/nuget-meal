@@ -1,0 +1,246 @@
+@page "/"
+@inject HttpClient Http
+
+<PageTitle>STWPB Mensa Hamm Sample</PageTitle>
+
+@if (isLoading)
+{
+    <section class="hero">
+        <div>
+            <p class="hero-kicker">Public STWPB sample</p>
+            <h1>Loading the current Hamm menu snapshot</h1>
+            <p class="hero-copy">The sample loads a snapshot that is generated in CI from the public STWPB feed.</p>
+        </div>
+    </section>
+
+    <div class="loading-panel">
+        <div class="spinner"></div>
+        <p>Preparing meal cards and pricing.</p>
+    </div>
+}
+else if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <section class="hero">
+        <div>
+            <p class="hero-kicker">Public STWPB sample</p>
+            <h1>Sample data is currently unavailable</h1>
+            <p class="hero-copy">@errorMessage</p>
+        </div>
+    </section>
+}
+else if (snapshot is not null)
+{
+    <section class="hero">
+        <div>
+            <p class="hero-kicker">Public STWPB sample</p>
+            <h1>Mensa Hamm in a GitHub Pages-ready Blazor layout</h1>
+            <p class="hero-copy">A static Blazor sample inspired by the ISD Companion mensa page, using grouped cards, badge chips, and tiered pricing.</p>
+        </div>
+
+        <div class="hero-meta">
+            <div>
+                <span class="meta-label">Meal day</span>
+                <strong>@FormatMealDate(snapshot.MealDate)</strong>
+            </div>
+            <div>
+                <span class="meta-label">Snapshot built</span>
+                <strong>@FormatGeneratedAt(snapshot.GeneratedAtUtc)</strong>
+            </div>
+        </div>
+    </section>
+
+    <section class="notice">
+        <strong>Static Pages note.</strong>
+        <span>The menu snapshot is generated during CI from the public STWPB endpoint because the endpoint currently does not expose browser CORS headers for a direct GitHub Pages WebAssembly call.</span>
+    </section>
+
+    @if (sections.Count == 0)
+    {
+        <section class="empty-state">
+            <h2>No meals found</h2>
+            <p>The snapshot did not contain a current Hamm menu.</p>
+        </section>
+    }
+    else
+    {
+        @foreach (var section in sections)
+        {
+            <section class="meal-section">
+                <header class="section-header">
+                    <p>@SectionEyebrow(section.Category)</p>
+                    <h2>@SectionTitle(section.Category)</h2>
+                </header>
+
+                <div class="meal-grid">
+                    @foreach (var meal in section.Meals)
+                    {
+                        <article class="meal-card">
+                            @if (!string.IsNullOrWhiteSpace(meal.Image))
+                            {
+                                <div class="meal-image-frame">
+                                    <img class="meal-image" src="@meal.Image" alt="@meal.Name" />
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="meal-image-frame placeholder">
+                                    <span>@PlaceholderGlyph(meal.Category)</span>
+                                </div>
+                            }
+
+                            <div class="meal-content">
+                                <div class="meal-heading">
+                                    <h3>@meal.Name</h3>
+                                    @if (meal.Date.HasValue)
+                                    {
+                                        <p>@meal.Date.Value.ToString("ddd, d MMM", GermanCulture)</p>
+                                    }
+                                </div>
+
+                                @if (meal.Badges.Length > 0)
+                                {
+                                    <div class="badge-row">
+                                        @foreach (var badge in meal.Badges)
+                                        {
+                                            <span class="badge-pill">@BadgeLabel(badge)</span>
+                                        }
+                                    </div>
+                                }
+
+                                <div class="price-stack">
+                                    <div>
+                                        <span class="price-label">Students</span>
+                                        <strong>@FormatPrice(meal.Students)</strong>
+                                    </div>
+                                    <div>
+                                        <span class="price-label">Staff</span>
+                                        <strong>@FormatPrice(meal.Employees)</strong>
+                                    </div>
+                                    <div>
+                                        <span class="price-label">Guests</span>
+                                        <strong>@FormatPrice(meal.Guests)</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    }
+                </div>
+            </section>
+        }
+    }
+}
+
+@code {
+    private static readonly CultureInfo GermanCulture = CultureInfo.GetCultureInfo("de-DE");
+
+    private static readonly JsonSerializerOptions JsonOptions = new()
+    {
+        PropertyNameCaseInsensitive = true,
+        Converters = { new JsonStringEnumConverter() }
+    };
+
+    private readonly List<MealSection> sections = [];
+    private StwpbMealSnapshot? snapshot;
+    private bool isLoading = true;
+    private string? errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            snapshot = await Http.GetFromJsonAsync<StwpbMealSnapshot>("data/hamm-meals.json", JsonOptions);
+            if (snapshot is null)
+            {
+                errorMessage = "The generated snapshot could not be loaded.";
+                return;
+            }
+
+            sections.Clear();
+            sections.AddRange(BuildSections(snapshot.Meals));
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Snapshot loading failed: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private static IEnumerable<MealSection> BuildSections(IEnumerable<StwpbMealSnapshotItem> meals)
+    {
+        return meals
+            .GroupBy(meal => meal.Category)
+            .OrderBy(group => CategoryOrder(group.Key))
+            .Select(group => new MealSection(group.Key, group.OrderBy(meal => meal.Name, StringComparer.OrdinalIgnoreCase).ToList()))
+            .ToList();
+    }
+
+    private static int CategoryOrder(Category category) => category switch
+    {
+        Category.Dish => 0,
+        Category.Soup => 1,
+        Category.Sidedish => 2,
+        Category.Dessert => 3,
+        _ => 4,
+    };
+
+    private static string SectionTitle(Category category) => category switch
+    {
+        Category.Dish => "Main dishes",
+        Category.Soup => "Soups",
+        Category.Sidedish => "Side dishes",
+        Category.Dessert => "Desserts",
+        _ => "More meals",
+    };
+
+    private static string SectionEyebrow(Category category) => category switch
+    {
+        Category.Dish => "Fresh from the line",
+        Category.Soup => "Warm starters",
+        Category.Sidedish => "Extras and sides",
+        Category.Dessert => "Sweet finish",
+        _ => "Additional offers",
+    };
+
+    private static string BadgeLabel(Badge badge) => badge switch
+    {
+        Badge.Vegan => "Vegan",
+        Badge.Vegetarian => "Vegetarian",
+        Badge.GlutenFree => "Gluten free",
+        Badge.LactoseFree => "Lactose free",
+        Badge.LowCalorie => "Low calorie",
+        Badge.Nonfat => "Low fat",
+        _ => badge.ToString(),
+    };
+
+    private static string PlaceholderGlyph(Category category) => category switch
+    {
+        Category.Dessert => "D",
+        Category.Sidedish => "S",
+        Category.Soup => "P",
+        _ => "M",
+    };
+
+    private static string FormatPrice(double? price)
+    {
+        return price.HasValue
+            ? price.Value.ToString("0.00 €", GermanCulture)
+            : "n/a";
+    }
+
+    private static string FormatMealDate(DateTime? mealDate)
+    {
+        return mealDate.HasValue
+            ? mealDate.Value.ToString("dddd, d. MMMM yyyy", GermanCulture)
+            : "No meal date available";
+    }
+
+    private static string FormatGeneratedAt(DateTime generatedAtUtc)
+    {
+        return generatedAtUtc.ToLocalTime().ToString("dd.MM.yyyy HH:mm 'local time'", GermanCulture);
+    }
+
+    private sealed record MealSection(Category Category, List<StwpbMealSnapshotItem> Meals);
+}

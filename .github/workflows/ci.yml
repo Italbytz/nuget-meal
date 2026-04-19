@@ -7,6 +7,8 @@ on:
       - master
     tags:
       - 'v*'
+  schedule:
+    - cron: '0 5 * * 1-5'
   pull_request:
   workflow_dispatch:
 
@@ -52,6 +54,15 @@ jobs:
       - name: Build docfx site
         run: dotnet tool run docfx docfx/docfx.json
 
+      - name: Restore Blazor sample
+        run: dotnet restore samples/Italbytz.Meal.STWPB.Blazor.Sample/Italbytz.Meal.STWPB.Blazor.Sample.csproj
+
+      - name: Build STWPB sample snapshot
+        run: dotnet run --project samples/Italbytz.Meal.STWPB.SampleDataBuilder/Italbytz.Meal.STWPB.SampleDataBuilder.csproj -- samples/Italbytz.Meal.STWPB.Blazor.Sample/wwwroot/data/hamm-meals.json
+
+      - name: Publish Blazor sample
+        run: dotnet publish samples/Italbytz.Meal.STWPB.Blazor.Sample/Italbytz.Meal.STWPB.Blazor.Sample.csproj --configuration Release --output ./artifacts/sample-build
+
       - name: Upload NuGet packages
         uses: actions/upload-artifact@v4
         with:
@@ -73,11 +84,21 @@ jobs:
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/configure-pages@v5
 
+      - name: Prepare Pages artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p ./artifacts/pages/sample
+          perl -0pi -e 's#<base href="/" />#<base href="/nuget-meal/sample/" />#' ./artifacts/sample-build/wwwroot/index.html
+          cp ./artifacts/sample-build/wwwroot/index.html ./artifacts/sample-build/wwwroot/404.html
+          cp -R ./docfx/_site/. ./artifacts/pages
+          cp -R ./artifacts/sample-build/wwwroot/. ./artifacts/pages/sample
+          touch ./artifacts/pages/.nojekyll
+
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docfx/_site
+          path: ./artifacts/pages
 
   deploy-pages:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'

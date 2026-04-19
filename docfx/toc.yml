@@ -4,5 +4,7 @@
   items:
     - name: Integration clients
       href: docs/integration-clients.md
+    - name: STWPB Blazor sample
+      href: docs/stwpb-blazor-sample.md
 - name: API
   href: api/

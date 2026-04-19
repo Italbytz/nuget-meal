@@ -1,0 +1,100 @@
+{
+  "GeneratedAtUtc": "2026-04-19T08:01:55.733387Z",
+  "MealDate": "2026-04-20T00:00:00",
+  "Meals": [
+    {
+      "Date": "2026-04-20T00:00:00",
+      "Name": "Lahmacun mit Rotkraut und Dip",
+      "Image": "https://stwpb.de/wp-content/plugins/stwk-pb-wp-plugin/splan/import/bilder/7662.jpg",
+      "Category": "Dish",
+      "Badges": [
+        "Vegan"
+      ],
+      "Students": 3.8,
+      "Employees": 5.6,
+      "Guests": 6.8
+    },
+    {
+      "Date": "2026-04-20T00:00:00",
+      "Name": "Putenbrust mit Currysauce",
+      "Image": "https://stwpb.de/wp-content/plugins/stwk-pb-wp-plugin/splan/import/bilder/5911.jpg",
+      "Category": "Dish",
+      "Badges": [],
+      "Students": 3.2,
+      "Employees": 4.7,
+      "Guests": 5.7
+    },
+    {
+      "Date": "2026-04-20T00:00:00",
+      "Name": "Beilagensalat mit French Dressing",
+      "Image": "https://stwpb.de/wp-content/plugins/stwk-pb-wp-plugin/splan/import/bilder/6498.jpg",
+      "Category": "Sidedish",
+      "Badges": [
+        "Vegan"
+      ],
+      "Students": 0.8,
+      "Employees": 1.3,
+      "Guests": 2.35
+    },
+    {
+      "Date": "2026-04-20T00:00:00",
+      "Name": "Duftreis",
+      "Image": "https://stwpb.de/wp-content/plugins/stwk-pb-wp-plugin/splan/import/bilder/2980.jpg",
+      "Category": "Sidedish",
+      "Badges": [
+        "Vegan"
+      ],
+      "Students": 0.8,
+      "Employees": 1.3,
+      "Guests": 2.35
+    },
+    {
+      "Date": "2026-04-20T00:00:00",
+      "Name": "Kaisergem\u00FCse",
+      "Image": "https://stwpb.de/wp-content/plugins/stwk-pb-wp-plugin/splan/import/bilder/3223.jpg",
+      "Category": "Sidedish",
+      "Badges": [
+        "Vegan"
+      ],
+      "Students": 0.8,
+      "Employees": 1.3,
+      "Guests": 2.35
+    },
+    {
+      "Date": "2026-04-20T00:00:00",
+      "Name": "Wedges Kartoffel",
+      "Image": "https://stwpb.de/wp-content/plugins/stwk-pb-wp-plugin/splan/import/bilder/72.jpg",
+      "Category": "Sidedish",
+      "Badges": [
+        "Vegan"
+      ],
+      "Students": 1.2,
+      "Employees": 2,
+      "Guests": 2.55
+    },
+    {
+      "Date": "2026-04-20T00:00:00",
+      "Name": "Apfel-Joghurt-Quark",
+      "Image": "https://stwpb.de/wp-content/plugins/stwk-pb-wp-plugin/splan/import/bilder/2968.jpg",
+      "Category": "Dessert",
+      "Badges": [
+        "Vegetarian"
+      ],
+      "Students": 0.8,
+      "Employees": 1.3,
+      "Guests": 2.35
+    },
+    {
+      "Date": "2026-04-20T00:00:00",
+      "Name": "Grie\u00DFpudding mit Sahne",
+      "Image": "https://stwpb.de/wp-content/plugins/stwk-pb-wp-plugin/splan/import/bilder/140013.jpg",
+      "Category": "Dessert",
+      "Badges": [
+        "Vegetarian"
+      ],
+      "Students": 1.5,
+      "Employees": 2.25,
+      "Guests": 2.8
+    }
+  ]
+}

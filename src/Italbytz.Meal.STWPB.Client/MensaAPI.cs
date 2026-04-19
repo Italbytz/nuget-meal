@@ -14,10 +14,15 @@ namespace Italbytz.Meal.STWPB.Client
     {
         private const string DateFormat = "yyyy-MM-dd";
         private const string HammVenue = "mensa-hamm";
-        private readonly string _id;
+        private readonly string? _id;
         private readonly HttpClient _httpClient;
 
-        public MensaAPI(string id, string acceptLanguage, HttpClient? httpClient = null)
+        public MensaAPI(string acceptLanguage, HttpClient? httpClient = null)
+            : this(null, acceptLanguage, httpClient)
+        {
+        }
+
+        public MensaAPI(string? id, string acceptLanguage, HttpClient? httpClient = null)
         {
             _id = id;
             _httpClient = httpClient ?? new HttpClient();
@@ -36,6 +41,11 @@ namespace Italbytz.Meal.STWPB.Client
 
         public async Task<List<Meal>> GetMeals()
         {
+            if (string.IsNullOrWhiteSpace(_id))
+            {
+                throw new InvalidOperationException("The legacy STWPB access id is required for GetMeals(). Use GetTodaysHammMeals() for the public Hamm endpoint.");
+            }
+
             return await _httpClient.GetFromJsonAsync<List<Meal>>($"fileadmin/shareddata/access2.php?id={_id}", Converter.Options)
                 ?? [];
         }
@@ -97,12 +107,20 @@ namespace Italbytz.Meal.STWPB.Client
                 PriceWorkers = ParsePrice(meal.PriceStaff),
                 PriceGuests = ParsePrice(meal.PriceGuests),
                 Allergens = ParseAllergens(meal.AllergensRaw),
-                Badges = ParseBadgesFromButton(meal.Button),
+                Badges = ParseBadges(meal.Category, meal.Button),
                 Restaurant = Restaurant.MensaHamm,
                 Pricetype = Pricetype.Fixed,
                 Image = meal.ImageJpeg ?? meal.ImageWebp,
                 Thumbnail = meal.ImageJpegThumb ?? meal.ImageWebpThumb,
             };
+        }
+
+        private static Badge[] ParseBadges(string category, string? button)
+        {
+            return ParseBadgesFromButton(button)
+                .Concat(ParseBadgesFromCategory(category))
+                .Distinct()
+                .ToArray();
         }
 
         private static Badge[] ParseBadgesFromButton(string? button)

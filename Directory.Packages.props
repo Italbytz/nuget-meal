@@ -6,5 +6,7 @@
   <ItemGroup>
     <PackageVersion Include="MSTest" Version="4.0.1" />
     <PackageVersion Include="Italbytz.Common.Abstractions" Version="1.0.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" />
   </ItemGroup>
 </Project>

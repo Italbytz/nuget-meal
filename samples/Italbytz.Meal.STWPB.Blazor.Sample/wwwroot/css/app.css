@@ -1,0 +1,39 @@
+:root {
+    color-scheme: light;
+    --canvas: #f6f1e7;
+    --canvas-deep: #ede2cf;
+    --surface: rgba(255, 252, 247, 0.96);
+    --ink-strong: #2d241f;
+    --ink-soft: #5d5146;
+    --ink-muted: #85776a;
+    --accent-strong: #1d5037;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    background:
+        radial-gradient(circle at top left, rgba(227, 197, 137, 0.32), transparent 26%),
+        radial-gradient(circle at bottom right, rgba(119, 162, 127, 0.22), transparent 24%),
+        linear-gradient(180deg, var(--canvas), var(--canvas-deep));
+    font: 400 16px/1.6 "Avenir Next", "Segoe UI", sans-serif;
+    color: var(--ink-soft);
+}
+
+a {
+    color: inherit;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.boot-screen {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    color: var(--ink-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}

@@ -11,15 +11,20 @@ namespace Italbytz.Meal.STWPB
     {
         private readonly Func<Task<List<Italbytz.Meal.STWPB.Client.Meal>>> _fetchMeals;
 
-        public string Id { get; }
+        public string? Id { get; }
 
         public string Language { get; }
 
-        public StwpbMealDataSource(string id, string language, Func<Task<List<Italbytz.Meal.STWPB.Client.Meal>>>? fetchMeals = null)
+        public StwpbMealDataSource(string language, Func<Task<List<Italbytz.Meal.STWPB.Client.Meal>>>? fetchMeals = null)
+            : this(null, language, fetchMeals)
+        {
+        }
+
+        public StwpbMealDataSource(string? id, string language, Func<Task<List<Italbytz.Meal.STWPB.Client.Meal>>>? fetchMeals = null)
         {
             Id = id;
             Language = language;
-            _fetchMeals = fetchMeals ?? (() => new Italbytz.Meal.STWPB.Client.MensaAPI(id, language).GetTodaysHammMeals());
+            _fetchMeals = fetchMeals ?? (() => new Italbytz.Meal.STWPB.Client.MensaAPI(language).GetTodaysHammMeals());
         }
 
         public Task<IMeal?> Retrieve(int id)

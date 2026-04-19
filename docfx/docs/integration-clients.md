@@ -44,7 +44,18 @@ For the Studentenwerk Paderborn integration path, the consolidated data source i
 ```csharp
 using Italbytz.Meal.STWPB;
 
-var dataSource = new StwpbMealDataSource("hamm", "de");
+var dataSource = new StwpbMealDataSource("de");
+var meals = await dataSource.RetrieveAll();
+```
+
+This default path uses the public Hamm WordPress endpoint and no longer depends on the legacy access id.
+
+If you still have a legacy STWPB id-based integration, you can keep using the compatibility constructor:
+
+```csharp
+using Italbytz.Meal.STWPB;
+
+var dataSource = new StwpbMealDataSource("legacy-id", "de");
 var meals = await dataSource.RetrieveAll();
 ```
 

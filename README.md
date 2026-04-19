@@ -6,6 +6,8 @@
 
 It is intended for developers who need reusable meal contracts, OpenMensa integration, and sample/testing helpers for apps, demos, and teaching material.
 
+The GitHub Pages site also publishes a Blazor sample for the public STWPB Hamm menu at `/sample/`.
+
 ## Which package should I use?
 
 - Use `Italbytz.Meal.Abstractions` for contracts such as `IMeal`, `IMealCollection`, `IMealQuery`, `IPrice`, and `IGetMealsService`, plus the shared default `Meal` and `Price` implementations.
@@ -20,8 +22,9 @@ It is intended for developers who need reusable meal contracts, OpenMensa integr
 API documentation is generated with `docfx` and can be published via GitHub Pages:
 
 - `https://italbytz.github.io/nuget-meal/`
+- `https://italbytz.github.io/nuget-meal/sample/`
 
-The doc site now also includes an integration guide that explains how OpenMensa, STWPB, and the testing helpers fit together in the consolidated package family.
+The doc site now also includes an integration guide that explains how OpenMensa, STWPB, and the testing helpers fit together in the consolidated package family, plus a Blazor sample that mirrors the mensa card layout used in ISD Companion.
 
 ## Quality checks
 
@@ -45,4 +48,6 @@ dotnet test nuget-meal.sln -v minimal
 dotnet pack nuget-meal.sln -c Release -v minimal
 dotnet tool restore
 dotnet tool run docfx docfx/docfx.json
+dotnet run --project samples/Italbytz.Meal.STWPB.SampleDataBuilder/Italbytz.Meal.STWPB.SampleDataBuilder.csproj -- samples/Italbytz.Meal.STWPB.Blazor.Sample/wwwroot/data/hamm-meals.json
+dotnet publish samples/Italbytz.Meal.STWPB.Blazor.Sample/Italbytz.Meal.STWPB.Blazor.Sample.csproj -c Release
 ```

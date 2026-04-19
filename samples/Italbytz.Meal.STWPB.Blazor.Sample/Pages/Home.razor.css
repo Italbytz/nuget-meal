@@ -1,0 +1,221 @@
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(18rem, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 2rem;
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at top right, rgba(222, 153, 92, 0.28), transparent 35%),
+        linear-gradient(135deg, rgba(255, 251, 244, 0.95), rgba(241, 247, 242, 0.98));
+    border: 1px solid rgba(42, 93, 69, 0.12);
+    box-shadow: 0 24px 60px rgba(61, 49, 34, 0.08);
+}
+
+.hero-kicker,
+.section-header p,
+.meta-label {
+    margin: 0 0 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.72rem;
+    color: var(--accent-strong);
+}
+
+.hero h1,
+.section-header h2,
+.empty-state h2 {
+    margin: 0;
+    font-family: "Iowan Old Style", "Palatino Linotype", serif;
+    font-weight: 700;
+    color: var(--ink-strong);
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 4vw, 3.3rem);
+    line-height: 1.02;
+    max-width: 14ch;
+}
+
+.hero-copy {
+    max-width: 58ch;
+    margin: 1rem 0 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+}
+
+.hero-meta {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+}
+
+.hero-meta > div,
+.notice,
+.loading-panel,
+.empty-state {
+    padding: 1rem 1.15rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(42, 93, 69, 0.12);
+}
+
+.hero-meta strong,
+.notice strong {
+    display: block;
+    color: var(--ink-strong);
+}
+
+.notice {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 2rem;
+    color: var(--ink-soft);
+}
+
+.meal-section {
+    margin-bottom: 2.75rem;
+}
+
+.section-header {
+    margin-bottom: 1rem;
+}
+
+.meal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.meal-card {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(61, 49, 34, 0.08);
+    box-shadow: 0 18px 36px rgba(61, 49, 34, 0.08);
+}
+
+.meal-image-frame {
+    height: 88px;
+    width: 88px;
+    overflow: hidden;
+    border-radius: 18px;
+    background: linear-gradient(160deg, rgba(245, 232, 201, 0.9), rgba(225, 238, 226, 0.95));
+}
+
+.meal-image-frame.placeholder {
+    display: grid;
+    place-items: center;
+    color: var(--accent-strong);
+    font: 700 1.65rem/1 "Avenir Next", "Segoe UI", sans-serif;
+}
+
+.meal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.meal-content {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.meal-heading h3 {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.35;
+    color: var(--ink-strong);
+}
+
+.meal-heading p {
+    margin: 0.35rem 0 0;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+}
+
+.badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.badge-pill {
+    padding: 0.32rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(29, 80, 55, 0.1);
+    color: var(--accent-strong);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.price-stack {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.price-label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-muted);
+}
+
+.price-stack strong {
+    color: var(--ink-strong);
+}
+
+.loading-panel,
+.empty-state {
+    display: grid;
+    justify-items: start;
+    gap: 0.7rem;
+}
+
+.spinner {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 4px solid rgba(29, 80, 55, 0.16);
+    border-top-color: var(--accent-strong);
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 860px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero,
+    .meal-card {
+        padding: 1rem;
+    }
+
+    .meal-card {
+        grid-template-columns: 1fr;
+    }
+
+    .meal-image-frame {
+        width: 100%;
+        height: 180px;
+    }
+
+    .price-stack {
+        grid-template-columns: 1fr;
+    }
+}
