@@ -8,7 +8,7 @@ on:
     tags:
       - 'v*'
   schedule:
-    - cron: '0 5 * * 1-5'
+    - cron: '0 2 * * *'
   pull_request:
   workflow_dispatch:
 

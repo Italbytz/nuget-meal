@@ -5,14 +5,6 @@
 
 @if (isLoading)
 {
-    <section class="hero">
-        <div>
-            <p class="hero-kicker">Public STWPB sample</p>
-            <h1>Loading the current Hamm menu snapshot</h1>
-            <p class="hero-copy">The sample loads a snapshot that is generated in CI from the public STWPB feed.</p>
-        </div>
-    </section>
-
     <div class="loading-panel">
         <div class="spinner"></div>
         <p>Preparing meal cards and pricing.</p>
@@ -20,7 +12,7 @@
 }
 else if (!string.IsNullOrWhiteSpace(errorMessage))
 {
-    <section class="hero">
+    <section class="hero error-hero">
         <div>
             <p class="hero-kicker">Public STWPB sample</p>
             <h1>Sample data is currently unavailable</h1>
@@ -32,26 +24,31 @@ else if (snapshot is not null)
 {
     <section class="hero">
         <div>
-            <p class="hero-kicker">Public STWPB sample</p>
-            <h1>Mensa Hamm in a GitHub Pages-ready Blazor layout</h1>
-            <p class="hero-copy">A static Blazor sample inspired by the ISD Companion mensa page, using grouped cards, badge chips, and tiered pricing.</p>
+            <p class="hero-kicker">Today's menu</p>
+            <h1>@FormatMealDate(snapshot.MealDate)</h1>
+            <p class="hero-copy">Clear meal boxes, direct pricing tiers, and mobile-first readability for a public STWPB menu sample that behaves more like a production screen than a showcase.</p>
         </div>
 
-        <div class="hero-meta">
+        <div class="hero-meta-grid">
             <div>
-                <span class="meta-label">Meal day</span>
-                <strong>@FormatMealDate(snapshot.MealDate)</strong>
+                <span class="meta-label">Sections</span>
+                <strong>@sections.Count</strong>
             </div>
             <div>
-                <span class="meta-label">Snapshot built</span>
+                <span class="meta-label">Meals</span>
+                <strong>@snapshot.Meals.Count</strong>
+            </div>
+            <div>
+                <span class="meta-label">Snapshot</span>
                 <strong>@FormatGeneratedAt(snapshot.GeneratedAtUtc)</strong>
             </div>
         </div>
     </section>
 
-    <section class="notice">
-        <strong>Static Pages note.</strong>
-        <span>The menu snapshot is generated during CI from the public STWPB endpoint because the endpoint currently does not expose browser CORS headers for a direct GitHub Pages WebAssembly call.</span>
+    <section class="status-strip" aria-label="Menu status overview">
+        <div class="status-chip">Nightly refresh via CI</div>
+        <div class="status-chip">Public Hamm endpoint</div>
+        <div class="status-chip">Info moved to separate page</div>
     </section>
 
     @if (sections.Count == 0)
@@ -75,26 +72,30 @@ else if (snapshot is not null)
                     @foreach (var meal in section.Meals)
                     {
                         <article class="meal-card">
-                            @if (!string.IsNullOrWhiteSpace(meal.Image))
-                            {
-                                <div class="meal-image-frame">
+                            <div class="meal-visual">
+                                @if (!string.IsNullOrWhiteSpace(meal.Image))
+                                {
                                     <img class="meal-image" src="@meal.Image" alt="@meal.Name" />
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="meal-image-frame placeholder">
-                                    <span>@PlaceholderGlyph(meal.Category)</span>
-                                </div>
-                            }
+                                }
+                                else
+                                {
+                                    <div class="meal-image-frame placeholder">
+                                        <span>@PlaceholderGlyph(meal.Category)</span>
+                                    </div>
+                                }
+
+                                <div class="meal-type-pill">@SectionTitle(meal.Category)</div>
+                            </div>
 
                             <div class="meal-content">
                                 <div class="meal-heading">
-                                    <h3>@meal.Name</h3>
-                                    @if (meal.Date.HasValue)
-                                    {
-                                        <p>@meal.Date.Value.ToString("ddd, d MMM", GermanCulture)</p>
-                                    }
+                                    <div>
+                                        <h3>@meal.Name</h3>
+                                        @if (meal.Date.HasValue)
+                                        {
+                                            <p>@meal.Date.Value.ToString("dddd, d. MMMM", GermanCulture)</p>
+                                        }
+                                    </div>
                                 </div>
 
                                 @if (meal.Badges.Length > 0)
@@ -108,15 +109,15 @@ else if (snapshot is not null)
                                 }
 
                                 <div class="price-stack">
-                                    <div>
+                                    <div class="price-box emphasis">
                                         <span class="price-label">Students</span>
                                         <strong>@FormatPrice(meal.Students)</strong>
                                     </div>
-                                    <div>
+                                    <div class="price-box">
                                         <span class="price-label">Staff</span>
                                         <strong>@FormatPrice(meal.Employees)</strong>
                                     </div>
-                                    <div>
+                                    <div class="price-box">
                                         <span class="price-label">Guests</span>
                                         <strong>@FormatPrice(meal.Guests)</strong>
                                     </div>

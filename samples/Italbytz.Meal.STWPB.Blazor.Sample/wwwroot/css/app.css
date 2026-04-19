@@ -21,6 +21,11 @@ body {
     color: var(--ink-soft);
 }
 
+body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
 a {
     color: inherit;
 }
@@ -36,4 +41,11 @@ a {
     color: var(--ink-muted);
     letter-spacing: 0.08em;
     text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+    overflow-wrap: anywhere;
 }

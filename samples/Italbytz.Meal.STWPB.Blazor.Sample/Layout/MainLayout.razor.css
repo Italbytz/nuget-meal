@@ -1,15 +1,20 @@
 .shell {
     max-width: 1120px;
     margin: 0 auto;
-    padding: 2rem 1.25rem 3rem;
+    padding: 1.5rem 1rem 5rem;
 }
 
 .masthead {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.brand-block {
+    display: grid;
+    gap: 0.2rem;
 }
 
 .eyebrow {
@@ -22,25 +27,90 @@
 
 .brand {
     margin: 0;
-    font: 600 1.15rem/1.2 "Avenir Next", "Segoe UI", sans-serif;
+    font: 700 1.35rem/1.15 "Avenir Next", "Segoe UI", sans-serif;
     color: var(--ink-strong);
 }
 
-.docs-link {
+.subtitle {
+    margin: 0;
+    color: var(--ink-muted);
+    max-width: 34rem;
+}
+
+.header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.ghost-link,
+.primary-link,
+.nav-link {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
+    justify-content: center;
     padding: 0.8rem 1rem;
     border-radius: 999px;
-    background: rgba(29, 80, 55, 0.08);
-    color: var(--accent-strong);
     text-decoration: none;
     font-weight: 600;
+}
+
+.ghost-link {
+    background: rgba(29, 80, 55, 0.08);
+    color: var(--accent-strong);
+}
+
+.primary-link {
+    background: var(--accent-strong);
+    color: white;
+    box-shadow: 0 12px 24px rgba(29, 80, 55, 0.22);
+}
+
+.top-nav {
+    position: sticky;
+    top: 0.8rem;
+    z-index: 10;
+    display: inline-grid;
+    grid-auto-flow: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0.35rem;
+    border-radius: 999px;
+    background: rgba(255, 252, 247, 0.9);
+    border: 1px solid rgba(42, 93, 69, 0.12);
+    backdrop-filter: blur(14px);
+}
+
+.nav-link {
+    min-width: 6.5rem;
+    color: var(--ink-soft);
+}
+
+.nav-link.active {
+    background: var(--accent-strong);
+    color: white;
 }
 
 @media (max-width: 720px) {
     .masthead {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .header-actions,
+    .top-nav {
+        width: 100%;
+    }
+
+    .header-actions {
+        justify-content: stretch;
+    }
+
+    .ghost-link,
+    .primary-link,
+    .nav-link {
+        flex: 1 1 0;
     }
 }

@@ -1,0 +1,34 @@
+@page "/info"
+
+<PageTitle>STWPB Mensa Hamm Info</PageTitle>
+
+<section class="info-shell">
+    <header class="info-hero">
+        <p class="info-kicker">Info</p>
+        <h1>About this menu sample</h1>
+        <p>This page collects the operational notes that do not belong on the main meal screen: source, refresh model, GitHub Pages limitations, and the link to the official mensa page.</p>
+    </header>
+
+    <div class="info-grid">
+        <article class="info-card">
+            <h2>Refresh model</h2>
+            <p>The snapshot is rebuilt by GitHub Actions every night. That makes the static sample useful in practice even though it cannot call the STWPB endpoint directly from the browser.</p>
+        </article>
+
+        <article class="info-card">
+            <h2>Why no direct runtime fetch?</h2>
+            <p>The public STWPB endpoint currently does not expose the browser CORS headers required for a GitHub Pages WebAssembly app. The sample therefore ships a generated JSON snapshot instead of failing at runtime.</p>
+        </article>
+
+        <article class="info-card">
+            <h2>Design intent</h2>
+            <p>The main page is optimized for quick scanning on phones: one clear box per meal, a strong title hierarchy, explicit price boxes, and no explanatory clutter between menu items.</p>
+        </article>
+
+        <article class="info-card action-card">
+            <h2>Official STWPB page</h2>
+            <p>When users want the source page, special announcements, or future changes outside the snapshot cadence, they can jump directly to the official Hamm menu.</p>
+            <a class="action-link" href="https://www.studierendenwerk-pb.de/gastronomie/speiseplaene/mensa-basilica-hamm" target="_blank" rel="noreferrer">Open official menu</a>
+        </article>
+    </div>
+</section>
