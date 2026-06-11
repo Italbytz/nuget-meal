@@ -1,0 +1,11 @@
+### GET Canteens Beispiel
+GET https://api.studentenwerk-dresden.de/openmensa/v2/canteens
+Accept: application/json
+
+### GET Days Beispiel
+https://api.studentenwerk-dresden.de/openmensa/v2/canteens/34/days
+Accept: application/json
+
+### GET Meals Beispiel
+https://api.studentenwerk-dresden.de/openmensa/v2/canteens/34/days/2026-06-11/meals
+Accept: application/json
